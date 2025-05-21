@@ -30,7 +30,9 @@
         }
         .match.black { border: 2px solid #555; }
         .match.red { border: 2px solid #ff0000; }
-        .match.green { border: 2px solid #00ff00; }
+        .match.green { border: 2px solid #2DB63D; }
+		.match.yellow { border: 2px solid #FFD700; }
+		.match.white { border: 2px solid #FFFFFF; }
         .team {
             background: #333;
             padding: 5px;
@@ -51,7 +53,7 @@
             font-size: 12px;
         }
         .player.winner { background: #00ff00; color: #000; }
-        .player.loser { background: #ff0000; color: #fff; }
+        .player.loser { background: #D97757; color: #fff; }
         .player:hover, .player.highlighted {
             background: #ffd700 !important;
             color: #000 !important;

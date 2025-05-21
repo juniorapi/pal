@@ -1,150 +1,164 @@
-   const players = document.querySelectorAll('.player');
-        players.forEach(player => {
-            player.addEventListener('mouseover', () => {
-                const playerId = player.getAttribute('data-player-id');
-                const groupId = player.getAttribute('data-group-id');
+// Виправлений код для script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const players = document.querySelectorAll('.player');
+    players.forEach(player => {
+        player.addEventListener('mouseover', () => {
+            const playerId = player.getAttribute('data-player-id');
+            // Підсвічуємо всіх гравців з однаковим ID (того самого гравця в різних раундах)
+            document.querySelectorAll(`.player[data-player-id="${playerId}"]`).forEach(p => {
+                if (!p.classList.contains('tbd')) {
+                    p.classList.add('highlighted');
+                }
+            });
+            
+            // Знаходимо батьківський матч
+            const parentMatch = player.closest('.match');
+            if (parentMatch) {
+                const groupId = parentMatch.getAttribute('data-group-id');
                 const status = player.getAttribute('data-status');
                 const nextRound = player.getAttribute('data-next-round');
-
-                document.querySelectorAll(`.player[data-player-id="${playerId}"]`).forEach(p => {
-                    if (!p.classList.contains('tbd')) {
-                        p.classList.add('highlighted');
-                    }
-                });
-
+                
+                // Додаткова логіка підсвічування по групах
                 if (groupId && status) {
+                    // Шукаємо всіх гравців у цій групі
                     const groupPlayers = document.querySelectorAll(`.match[data-group-id="${groupId}"] .player`);
-                    let winner = null;
-                    groupPlayers.forEach(p => {
-                        if (p.getAttribute('data-status') === 'winner') {
-                            winner = p.getAttribute('data-player-id');
-                        }
-                    });
-                    if (status === 'loser' && nextRound === 'lower') {
-                        document.querySelectorAll(`.player[data-player-id="${playerId}"][data-next-round="lower"]`).forEach(p => {
+                    
+                    // Для переможців і тих, хто йде в нижню сітку
+                    if (status === 'winner' && nextRound === 'upper') {
+                        // Підсвічуємо місце, куди перейшов переможець
+                        document.querySelectorAll(`.player[data-player-id="${playerId}"]`).forEach(p => {
                             if (!p.classList.contains('tbd')) {
                                 p.classList.add('highlighted');
                             }
                         });
-                    } else if (status === 'winner' && nextRound === 'upper') {
-                        document.querySelectorAll(`.player[data-player-id="${playerId}"][data-next-round="upper"]`).forEach(p => {
-                            if (!p.classList.contains('tbd')) {
-                                p.classList.add('highlighted');
-                            }
-                        });
-                    }
-                    if (winner && winner !== playerId) {
-                        document.querySelectorAll(`.player[data-player-id="${winner}"]`).forEach(p => {
+                    } else if (status === 'loser' && nextRound === 'lower') {
+                        // Підсвічуємо місце, куди перейшов гравець, що програв
+                        document.querySelectorAll(`.player[data-player-id="${playerId}"]`).forEach(p => {
                             if (!p.classList.contains('tbd')) {
                                 p.classList.add('highlighted');
                             }
                         });
                     }
-                }
-            });
-
-            player.addEventListener('mouseout', () => {
-                const playerId = player.getAttribute('data-player-id');
-                const groupId = player.getAttribute('data-group-id');
-
-                document.querySelectorAll(`.player[data-player-id="${playerId}"]`).forEach(p => {
-                    p.classList.remove('highlighted');
-                });
-
-                if (groupId) {
-                    const groupPlayers = document.querySelectorAll(`.match[data-group-id="${groupId}"] .player`);
-                    let winner = null;
-                    groupPlayers.forEach(p => {
-                        if (p.getAttribute('data-status') === 'winner') {
-                            winner = p.getAttribute('data-player-id');
-                        }
-                    });
-                    if (winner) {
-                        document.querySelectorAll(`.player[data-player-id="${winner}"]`).forEach(p => {
-                            p.classList.remove('highlighted');
-                        });
-                    }
-                }
-            });
-        });
-
-        function updatePlayerStatus(playerId, status, score, nextRound, place) {
-            const player = document.querySelector(`.player[data-player-id="${playerId}"]`);
-            if (!player) return;
-
-            player.setAttribute('data-status', status);
-            player.setAttribute('data-score', score);
-            player.setAttribute('data-next-round', nextRound);
-            if (place) player.setAttribute('data-place', place);
-            player.classList.add(status === 'winner' ? 'winner' : 'loser');
-
-            const groupId = player.closest('.match').getAttribute('data-group-id');
-            const groupNumber = parseInt(groupId.replace('group', ''));
-
-            if (status === 'winner' && nextRound === 'upper') {
-                let upperMatchId, slot;
-                if (groupNumber <= 3) {
-                    upperMatchId = 'upper1';
-                    slot = groupNumber;
-                } else if (groupNumber <= 6) {
-                    upperMatchId = 'upper2';
-                    slot = groupNumber - 3;
-                } else {
-                    upperMatchId = 'upper3';
-                    slot = groupNumber - 6;
-                }
-                const targetSlot = document.querySelector(`.match[data-match-id="${upperMatchId}"] .player[data-player-id="upper${slot}-${slot}"]`);
-                if (targetSlot) {
-                    targetSlot.textContent = player.textContent;
-                    targetSlot.setAttribute('data-player-id', playerId);
-                    targetSlot.setAttribute('data-next-round', 'upper');
-                    targetSlot.classList.remove('tbd');
-                    targetSlot.classList.add(status === 'winner' ? 'winner' : 'loser');
-                }
-            } else if (status === 'loser' && nextRound === 'lower') {
-                const lowerMatchId = `lower1-${groupNumber}`;
-                const groupPlayers = document.querySelectorAll(`.match[data-group-id="${groupId}"] .player`);
-                let slotIndex = 1;
-                groupPlayers.forEach(p => {
-                    if (p.getAttribute('data-status') === 'loser' && p.getAttribute('data-player-id') !== playerId) {
-                        slotIndex++;
-                    }
-                });
-                const targetSlot = document.querySelector(`.match[data-match-id="${lowerMatchId}"] .player[data-player-id="lower1-${groupNumber}-${slotIndex}"]`);
-                if (targetSlot) {
-                    targetSlot.textContent = player.textContent;
-                    targetSlot.setAttribute('data-player-id', playerId);
-                    targetSlot.setAttribute('data-next-round', 'lower');
-                    targetSlot.classList.remove('tbd');
-                    targetSlot.classList.add(status === 'winner' ? 'winner' : 'loser');
                 }
             }
-        }
+        });
 
-        updatePlayerStatus('p1', 'loser', '5', 'lower', '');
-        updatePlayerStatus('p2', 'winner', '10', 'upper', '');
-        updatePlayerStatus('p3', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p4', 'winner', '11', 'upper', '');
-		updatePlayerStatus('p5', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p6', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p7', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p8', 'winner', '4', 'lower', '');
-		updatePlayerStatus('p9', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p10', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p11', 'winner', '4', 'lower', '');
-		updatePlayerStatus('p12', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p13', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p14', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p15', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p16', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p17', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p18', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p19', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p20', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p21', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p22', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p23', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p24', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p25', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p26', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p27', 'loser', '4', 'lower', '');
+        player.addEventListener('mouseout', () => {
+            // Видаляємо підсвічування з усіх елементів
+            document.querySelectorAll('.player.highlighted').forEach(p => {
+                p.classList.remove('highlighted');
+            });
+        });
+    });
+
+    // Функція для оновлення статусу гравця та його переміщення в наступний раунд
+    function updatePlayerStatus(playerId, status, score, nextRound, place) {
+        // Знаходимо всіх гравців з цим ID (може бути декілька, якщо гравець уже переміщений)
+        const players = document.querySelectorAll(`.player[data-player-id="${playerId}"]`);
+        if (players.length === 0) return;
+        
+        // Знаходимо основного гравця (першого раунду)
+        const player = players[0];
+        const matchElement = player.closest('.match');
+        if (!matchElement) return;
+        
+        // Встановлюємо атрибути гравця
+        player.setAttribute('data-status', status);
+        player.setAttribute('data-score', score);
+        player.setAttribute('data-next-round', nextRound);
+        if (place) player.setAttribute('data-place', place);
+        
+        // Додаємо відповідний клас
+        if (status === 'winner') {
+            player.classList.add('winner');
+        } else if (status === 'loser') {
+            player.classList.add('loser');
+        }
+        
+        // Отримуємо ID групи та номер групи
+        const groupId = matchElement.getAttribute('data-group-id');
+        if (!groupId) return;
+        
+        const groupNumber = parseInt(groupId.replace('group', ''));
+        
+        // Обробка переможців - переміщення у верхню сітку
+        if (status === 'winner' && nextRound === 'upper') {
+            let upperMatchId, position;
+            
+            // Визначаємо, в який матч верхньої сітки переходить гравець
+            if (groupNumber <= 3) {
+                upperMatchId = 'upper1';
+                position = groupNumber;
+            } else if (groupNumber <= 6) {
+                upperMatchId = 'upper2';
+                position = groupNumber - 3;
+            } else {
+                upperMatchId = 'upper3';
+                position = groupNumber - 6;
+            }
+            
+            // Знаходимо відповідний слот у верхній сітці
+            const targetSlot = document.querySelector(`.match[data-match-id="${upperMatchId}"] .player[data-player-id="upper${upperMatchId.substring(5)}-${position}"]`);
+            if (targetSlot) {
+                // Оновлюємо слот
+                targetSlot.textContent = player.textContent;
+                targetSlot.setAttribute('data-player-id', playerId);
+                targetSlot.setAttribute('data-status', status);
+                targetSlot.setAttribute('data-next-round', 'upper');
+                targetSlot.classList.remove('tbd');
+                targetSlot.classList.add('winner');
+            }
+        } 
+        // Обробка тих, хто програв - переміщення в нижню сітку
+        else if (status === 'loser' && nextRound === 'lower') {
+            // Визначаємо, в який матч нижньої сітки переходить гравець
+            const lowerMatchId = `lower1-${Math.ceil(groupNumber / 3)}`;
+            
+            // Визначаємо позицію в цьому матчі
+            let position;
+            if (groupNumber % 3 === 1) position = 1;
+            else if (groupNumber % 3 === 2) position = 2;
+            else position = 3;
+            
+            // Знаходимо цільовий слот у нижній сітці
+            const targetSlot = document.querySelector(`.match[data-match-id="${lowerMatchId}"] .player[data-player-id="lower1-${Math.ceil(groupNumber / 3)}-${position}"]`);
+            if (targetSlot) {
+                // Оновлюємо слот
+                targetSlot.textContent = player.textContent;
+                targetSlot.setAttribute('data-player-id', playerId);
+                targetSlot.setAttribute('data-status', 'active');
+                targetSlot.setAttribute('data-next-round', 'lower');
+                targetSlot.classList.remove('tbd');
+            }
+        }
+    }
+
+    // Оновлюємо статуси всіх гравців
+    updatePlayerStatus('p1', 'loser', '5', 'lower', '');
+    updatePlayerStatus('p2', 'winner', '10', 'upper', '');
+    updatePlayerStatus('p3', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p4', 'winner', '11', 'upper', '');
+    updatePlayerStatus('p5', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p6', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p7', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p8', 'winner', '9', 'upper', '');
+    updatePlayerStatus('p9', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p10', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p11', 'winner', '8', 'upper', '');
+    updatePlayerStatus('p12', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p13', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p14', 'winner', '9', 'upper', '');
+    updatePlayerStatus('p15', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p16', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p17', 'winner', '8', 'upper', '');
+    updatePlayerStatus('p18', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p19', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p20', 'winner', '9', 'upper', '');
+    updatePlayerStatus('p21', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p22', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p23', 'winner', '8', 'upper', '');
+    updatePlayerStatus('p24', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p25', 'loser', '4', 'lower', '');
+    updatePlayerStatus('p26', 'winner', '7', 'upper', '');
+    updatePlayerStatus('p27', 'loser', '4', 'lower', '');
+});

@@ -122,9 +122,9 @@
         }
 
         updatePlayerStatus('p1', 'loser', '5', 'lower', '');
-        updatePlayerStatus('p2', 'winner', '10', 'upper', 'upper4');
+        updatePlayerStatus('p2', 'winner', '10', 'upper', '');
         updatePlayerStatus('p3', 'loser', '4', 'lower', '');
-		updatePlayerStatus('p4', 'winner', '11', 'upper2', '');
+		updatePlayerStatus('p4', 'winner', '11', 'upper', '');
 		updatePlayerStatus('p5', 'loser', '4', 'lower', '');
 		updatePlayerStatus('p6', 'loser', '4', 'lower', '');
 		updatePlayerStatus('p7', 'loser', '4', 'lower', '');

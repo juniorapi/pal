@@ -1,0 +1,86 @@
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin: 0;
+        }
+        .bracket {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .round {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .match {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin: 0 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .match.black { border: 2px solid #555; }
+        .match.red { border: 2px solid #ff0000; }
+        .match.green { border: 2px solid #00ff00; }
+        .team {
+            background: #333;
+            padding: 5px;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+            margin: 2px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .player {
+            cursor: pointer;
+            padding: 3px;
+            border-radius: 3px;
+            transition: background 0.3s;
+            position: relative;
+            margin: 1px 0;
+            font-size: 12px;
+        }
+        .player.winner { background: #00ff00; color: #000; }
+        .player.loser { background: #ff0000; color: #fff; }
+        .player:hover, .player.highlighted {
+            background: #ffd700 !important;
+            color: #000 !important;
+            animation: pulse 0.5s infinite;
+        }
+        .player.tbd { color: #888; }
+        .team-name {
+            font-weight: bold;
+            font-size: 10px;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            color: #ffd700;
+        }
+        .round h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+        .connector {
+            width: 30px;
+            height: 2px;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 100%;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }

@@ -1,333 +1,40 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Турнірна сітка - Голодні ігри</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Aion Online Статистика</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #ffffff;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .counter {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="bracket">
-        <!-- 1-й раунд (чорний) -->
-        <div class="round" style="justify-content: space-between;">
-            <h3>1-й раунд</h3>
-            <div class="match white" data-group-id="group1">
-                <div class="team-name">Основа</div>
-                <div class="team">
-                    <div class="player" data-player-id="p1">IronHide_189</div>
-                    <div class="player" data-player-id="p2">_Legenda_G_UA_</div>
-                    <div class="player" data-player-id="p3">nobody_believes</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group2">
-                <div class="team-name">Тіні</div>
-                <div class="team">
-                    <div class="player" data-player-id="p4">_PersivaJl_</div>
-                    <div class="player" data-player-id="p5">ARYAN_TRIP</div>
-                    <div class="player" data-player-id="p6">__Dean_</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group3">
-                <div class="team-name">Світло</div>
-                <div class="team">
-                    <div class="player" data-player-id="p7">The_CtenaNoBu4</div>
-                    <div class="player" data-player-id="p8">Nerdik_MOM</div>
-                    <div class="player" data-player-id="p9">To4Ho_He_CTaTuCT</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group4">
-                <div class="team-name">Основа</div>
-                <div class="team">
-                    <div class="player" data-player-id="p10">PH0T0GRAPHER</div>
-                    <div class="player" data-player-id="p11">_Fakir_UA</div>
-                    <div class="player" data-player-id="p12">TyM_HaBTeMa</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group5">
-                <div class="team-name">Тіні</div>
-                <div class="team">
-                    <div class="player" data-player-id="p13">d_Dean_</div>
-                    <div class="player" data-player-id="p14">chpoher</div>
-                    <div class="player" data-player-id="p15">FREEREIN</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group6">
-                <div class="team-name">Світло</div>
-                <div class="team">
-                    <div class="player" data-player-id="p16">MaecTpo__511</div>
-                    <div class="player" data-player-id="p17">Kocmo_pe4enb</div>
-                    <div class="player" data-player-id="p18">sooperkiller</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group7">
-                <div class="team-name">Основа</div>
-                <div class="team">
-                    <div class="player" data-player-id="p19">The_JLEGENDA</div>
-                    <div class="player" data-player-id="p20">_KyS04ek_ZLA_</div>
-                    <div class="player" data-player-id="p21">dimageumer</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group8">
-                <div class="team-name">Тіні</div>
-                <div class="team">
-                    <div class="player" data-player-id="p22">DUSHNILA_TRAKTOPICT</div>
-                    <div class="player" data-player-id="p23">_KyS04ek_DObRA_</div>
-                    <div class="player" data-player-id="p24">Suck_my_candy</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-group-id="group9">
-                <div class="team-name">Світло</div>
-                <div class="team">
-                    <div class="player" data-player-id="p25">HaCoC_UBaHbI4</div>
-                    <div class="player" data-player-id="p26">smerekatop1</div>
-                    <div class="player" data-player-id="p27">PersivaJl</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
+  <h1>Статистика Онлайн - Aion Destiny</h1>
+  <div class="counter" id="total">Загальний онлайн: ...</div>
+  <div class="counter" id="asmo">Асмо: ...</div>
+  <div class="counter" id="ely">Еліоси: ...</div>
 
-        <!-- 2-й раунд (червоний) -->
-        <div class="round" style="justify-content: center;">
-            <h3>2-й раунд</h3>
-            <div class="match white" data-match-id="upper1">
-                <div class="team-name">Верхня сітка 1</div>
-                <div class="team red">
-                    <div class="player tbd" data-player-id="upper1-1">TBD</div>
-                    <div class="player tbd" data-player-id="upper1-2">TBD</div>
-                    <div class="player tbd" data-player-id="upper1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-match-id="upper2">
-                <div class="team-name">Верхня сітка 2</div>
-                <div class="team red">
-                    <div class="player tbd" data-player-id="upper2-1">TBD</div>
-                    <div class="player tbd" data-player-id="upper2-2">TBD</div>
-                    <div class="player tbd" data-player-id="upper2-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match white" data-match-id="upper3">
-                <div class="team-name">Верхня сітка 3</div>
-                <div class="team red">
-                    <div class="player tbd" data-player-id="upper3-1">TBD</div>
-                    <div class="player tbd" data-player-id="upper3-2">TBD</div>
-                    <div class="player tbd" data-player-id="upper3-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-        
-        <div class="round" style="justify-content: center;">
-            <h3>3-й раунд</h3>
-            <div class="match white" data-match-id="upper4">
-                <div class="team-name">Верхня сітка - фінал</div>
-                <div class="team red">
-                    <div class="player tbd" data-player-id="upper4-1">TBD</div>
-                    <div class="player tbd" data-player-id="upper4-2">TBD</div>
-                    <div class="player tbd" data-player-id="upper4-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-
-        <!-- Нижня сітка (зелений): Раунд 1 -->
-        <div class="round" style="justify-content: space-between;">
-            <h3>Нижня сітка (1-й раунд)</h3>
-            <div class="match green" data-match-id="lower1-1">
-                <div class="team-name">Нижня сітка 1-1</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-1-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-1-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match green" data-match-id="lower1-2">
-                <div class="team-name">Нижня сітка 1-2</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-2-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-2-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-2-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match green" data-match-id="lower1-3">
-                <div class="team-name">Нижня сітка 1-3</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-3-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-3-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-3-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			 <div class="match green" data-match-id="lower1-4">
-                <div class="team-name">Нижня сітка 1-4</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-4-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-4-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-4-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			 <div class="match green" data-match-id="lower1-5">
-                <div class="team-name">Нижня сітка 1-5</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-5-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-5-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-5-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			 <div class="match green" data-match-id="lower1-6">
-                <div class="team-name">Нижня сітка 1-6</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower1-6-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-6-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower1-6-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-
-        <!-- Нижня сітка (зелений): Раунд 2 -->
-        <div class="round" style="justify-content: center;">
-            <h3>Нижня сітка (2-й раунд)</h3>
-            <div class="match green" data-match-id="lower2-1">
-                <div class="team-name">Нижня сітка 2-1</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower2-1-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-1-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match green" data-match-id="lower2-2">
-                <div class="team-name">Нижня сітка 2-2</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower2-2-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-2-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-2-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			   <div class="match green" data-match-id="lower2-3">
-                <div class="team-name">Нижня сітка 2-3</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower2-3-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-3-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-3-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			   <div class="match green" data-match-id="lower2-4">
-                <div class="team-name">Нижня сітка 2-4</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower2-4-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-4-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower2-4-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-        
-        <div class="round" style="justify-content: center;">
-            <h3>Нижня сітка (3-й раунд)</h3>
-            <div class="match green" data-match-id="lower3-1">
-                <div class="team-name">Нижня сітка 3-1</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower3-1-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower3-1-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower3-1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			    <div class="match green" data-match-id="lower3-2">
-                <div class="team-name">Нижня сітка 3-2</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower3-2-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower3-2-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower3-2-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-        
-        <div class="round" style="justify-content: center;">
-            <h3>Нижня сітка (4-й раунд)</h3>
-            <div class="match green" data-match-id="lower4-1">
-                <div class="team-name">Нижня сітка - фінал</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower4-1-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower4-1-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower4-1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-         <!-- Нижня сітка (зелений): Раунд 2 -->
-        <div class="round" style="justify-content: center;">
-            <h3>Нижня сітка 2(1-й раунд)</h3>
-            <div class="match red" data-match-id="lower5-1">
-                <div class="team-name">Нижня сітка 5-1</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower5-1-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-1-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-1-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-            <div class="match red" data-match-id="lower5-2">
-                <div class="team-name">Нижня сітка 5-2</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower5-2-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-2-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-2-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			   <div class="match red" data-match-id="lower5-3">
-                <div class="team-name">Нижня сітка 5-3</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower5-3-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-3-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-3-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-			   <div class="match red" data-match-id="lower5-4">
-                <div class="team-name">Нижня сітка 5-4</div>
-                <div class="team green">
-                    <div class="player tbd" data-player-id="lower5-4-1">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-4-2">TBD</div>
-                    <div class="player tbd" data-player-id="lower5-4-3">TBD</div>
-                </div>
-                <div class="connector"></div>
-            </div>
-        </div>
-        <!-- Фінал -->
-        <div class="round" style="justify-content: center;">
-            <h3>Гранд-фінал</h3>
-            <div class="match" data-match-id="final">
-                <div class="team-name">Фіналісти</div>
-                <div class="team">
-                    <div class="player tbd" data-player-id="final-1">TBD</div>
-                    <div class="player tbd" data-player-id="final-2">TBD</div>
-                    <div class="player tbd" data-player-id="final-3">TBD</div>
-                    <div class="player tbd" data-player-id="final-4">TBD</div>
-                    <div class="player tbd" data-player-id="final-5">TBD</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script>
+    fetch('proxy.php')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('total').textContent = 'Загальний онлайн: ' + data.total_online;
+        document.getElementById('asmo').textContent = 'Асмо: ' + data.online_asmo;
+        document.getElementById('ely').textContent = 'Еліоси: ' + data.online_ely;
+      })
+      .catch(err => {
+        console.error('Помилка:', err);
+        document.getElementById('total').textContent = 'Помилка отримання даних';
+      });
+  </script>
 </body>
 </html>
